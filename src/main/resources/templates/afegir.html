@@ -1,0 +1,27 @@
+<!-- plantilla afegir.html -->
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Afegir Jugadors</title>
+<script type="text/javascript" charset="UTF-8"></script></head>
+<body>
+<!--<form method="post" action="#" th:action="@{/empleats/new/submit}" th:object="${empleatForm}">-->
+<form method="post" action="#" th:action="${jugadorForm.id!=0} ?@{/jugadors/edit/submit}:@{/jugadors/new/submit}" th:object="${jugadorForm}">
+    <!-- si el id == 0 és la primera vegada que utilitzo el form, per tant new Empleat -->
+    <!--si el id != 0 ja té valors, i envio per editar, modificar, substituir empleat -->
+
+    <h1 th:text="${jugadorForm.id!=0}?'Editar jugadors': 'Nou jugadors'">bla bla empleat</h1>
+    Id <input type="text" id="id" placeholder="1" th:field="*{id}" th:attrappend="readonly=${jugadorForm.id!=0}?'readonly':null"><br/>
+    Nom <input type="text" id="nom" placeholder="Nom" th:field="*{nom}"><br/>
+    Edad <input type="text" id="edad" placeholder="20" th:field="*{edad}"><br/>
+    Email <input type="text" id="email" placeholder="a@a.com" th:field="*{email}"><br/>
+    Telèfon <input type="text" id="telefon" placeholder="93123456" th:field="*{telefon}"><br/>
+    <button type="submit">Enviar</button>
+</form>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sortir "/>
+
+</form>
+</body>
+</html>
